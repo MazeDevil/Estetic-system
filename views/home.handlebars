@@ -1,0 +1,16 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Clinica estetica</p>
+    <h1>Sistema web integrado ao MySQL</h1>
+    <p class="lead">Estrutura em Node.js, Express e Handlebars para CRUD, listagens e consulta SQL integrada.</p>
+  </div>
+</section>
+
+<section class="grid">
+  {{#each cards}}
+    <a class="module-card" href="{{href}}">
+      <span>{{label}}</span>
+      <p>{{description}}</p>
+    </a>
+  {{/each}}
+</section>

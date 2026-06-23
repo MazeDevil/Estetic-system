@@ -1,0 +1,41 @@
+<section class="page-header page-header-row">
+  <div>
+    <p class="eyebrow">Formulario</p>
+    <h1>{{title}}</h1>
+  </div>
+  <a class="button ghost" href="{{route}}">Voltar</a>
+</section>
+
+<form class="form-panel" action="{{action}}" method="{{method}}">
+  <div class="form-grid">
+    {{#each fields}}
+      <label class="field {{#if (eq type "textarea")}}field-wide{{/if}}">
+        <span>{{label}}</span>
+
+        {{#if (eq type "textarea")}}
+          <textarea name="{{name}}" rows="4" {{#if required}}required{{/if}}>{{fieldValue ../item this}}</textarea>
+        {{else if (eq type "select")}}
+          <select name="{{name}}" {{#if required}}required{{/if}}>
+            <option value="">Selecione</option>
+            {{#each options}}
+              <option value="{{value}}" {{#if (isSelected ../../item .. value)}}selected{{/if}}>{{label}}</option>
+            {{/each}}
+          </select>
+        {{else}}
+          <input
+            type="{{type}}"
+            name="{{name}}"
+            value="{{fieldValue ../item this}}"
+            {{#if maxlength}}maxlength="{{maxlength}}"{{/if}}
+            {{#if required}}required{{/if}}
+          >
+        {{/if}}
+      </label>
+    {{/each}}
+  </div>
+
+  <div class="form-actions">
+    <button class="button primary" type="submit">Salvar</button>
+    <a class="button ghost" href="{{route}}">Cancelar</a>
+  </div>
+</form>

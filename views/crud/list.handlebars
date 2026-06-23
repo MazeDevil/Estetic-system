@@ -1,0 +1,45 @@
+<section class="page-header page-header-row">
+  <div>
+    <p class="eyebrow">Cadastro</p>
+    <h1>{{title}}</h1>
+  </div>
+  <a class="button primary" href="{{route}}/novo">Novo registro</a>
+</section>
+
+<section class="panel">
+  {{#if rows.length}}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            {{#each fields}}
+              <th>{{label}}</th>
+            {{/each}}
+            <th class="actions-col">Acoes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each rows}}
+            <tr>
+              {{#each ../fields}}
+                <td>{{lookup ../this name}}</td>
+              {{/each}}
+              <td class="actions">
+                <a class="button ghost" href="{{../route}}/{{lookup this ../primaryKey}}/editar">Editar</a>
+                <form action="{{../route}}/{{lookup this ../primaryKey}}?_method=DELETE" method="post" data-confirm>
+                  <button class="button danger" type="submit">Excluir</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <div class="empty-state">
+      <h2>Nenhum registro encontrado</h2>
+      <p>Cadastre o primeiro item para validar a conexao real com o banco.</p>
+      <a class="button primary" href="{{route}}/novo">Cadastrar agora</a>
+    </div>
+  {{/if}}
+</section>

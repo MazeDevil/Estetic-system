@@ -1,0 +1,53 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Consulta SQL</p>
+    <h1>Agenda por profissional, servico e departamento</h1>
+    <p class="lead">Relatorio gerado pela view vw_agenda_completa criada no arquivo sql/BD.sql.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="sql-box">
+    SELECT * FROM vw_agenda_completa;
+  </div>
+
+  {{#if rows.length}}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Data</th>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Status</th>
+            <th>Profissional</th>
+            <th>Cliente</th>
+            <th>Servico</th>
+            <th>Departamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each rows}}
+            <tr>
+              <td>{{id_agendamento}}</td>
+              <td>{{agendamento_data}}</td>
+              <td>{{agendamento_horaInicio}}</td>
+              <td>{{agendamento_horaFim}}</td>
+              <td>{{agendamento_status}}</td>
+              <td>{{profissional_nome}}</td>
+              <td>{{cliente_nome}}</td>
+              <td>{{servico_nome}}</td>
+              <td>{{departamento_nome}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <div class="empty-state">
+      <h2>Sem resultados</h2>
+      <p>Cadastre departamentos, servicos, profissionais e agendamentos para preencher o relatorio.</p>
+    </div>
+  {{/if}}
+</section>
